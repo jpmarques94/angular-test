@@ -1,0 +1,5 @@
+<app-add-user (added)="addNewUser($event)"></app-add-user>
+
+<hr>
+
+<app-table [data]="dataSource" (edit)="editUser($event)" (delete)="deleteUser($event)" (deleteAllEvent)="deleteAll()"></app-table>

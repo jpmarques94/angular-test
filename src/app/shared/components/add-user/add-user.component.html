@@ -1,0 +1,10 @@
+
+<div class="p-d-flex p-py-4">
+  <span class="ui-float-label">
+    <input id="float-input" type="text" size="30" pInputText [(ngModel)]="newUser">
+    <label for="float-input">Add new User</label>
+  </span>
+
+  <button pButton type="button" label="Add" (click)="handleClick()" [disabled]="newUser.length == 0" class="p-ml-2"></button>
+</div>
+

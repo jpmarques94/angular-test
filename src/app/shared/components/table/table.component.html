@@ -1,0 +1,34 @@
+<div class="table-general-actions">
+  <button pButton type="button" label="Delete all" (click)="deleteAll()" *ngIf="data.length > 0 && !editAllMode"></button>
+  <button pButton type="button" label="Edit all" (click)="editAll(dt)" *ngIf="data.length > 0 && !editAllMode" class="p-ml-2"></button>
+  <button pButton type="button" label="Save all" (click)="saveAll(dt)" *ngIf="data.length > 0 && editAllMode" class="p-ml-2"></button>
+</div>
+
+<p-table #dt [value]="data" dataKey="id" editMode="row">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>Name</th>
+            <th style="width:8em"></th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-editing="editing" let-ri="rowIndex">
+        <tr [pEditableRow]="rowData">
+            <td>
+              <p-cellEditor>
+                <ng-template pTemplate="input">
+                    <input pInputText type="text" class="table-row" [(ngModel)]="rowData.name" required [ngStyle]="{'width':'100%'}">
+                </ng-template>
+                <ng-template pTemplate="output">
+                    {{rowData.name}}
+                </ng-template>
+            </p-cellEditor>
+            </td>
+            <td style="text-align:center">
+                <button *ngIf="!editing" pButton pRipple type="button" pInitEditableRow icon="pi pi-pencil" class="p-button-rounded p-button-text"></button>
+                <button *ngIf="!editing" pButton pRipple type="button" icon="pi pi-trash" class="ui-button-danger p-ml-2" (click)="onRowDelete(ri)"></button>
+                <button *ngIf="editing && !editAllMode" pButton pRipple type="button" pSaveEditableRow icon="pi pi-check" class="ui-button-success" style="margin-right: .5em" ></button>
+                <button *ngIf="editing && !editAllMode" pButton pRipple type="button" pCancelEditableRow icon="pi pi-times" class="ui-button-danger"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
